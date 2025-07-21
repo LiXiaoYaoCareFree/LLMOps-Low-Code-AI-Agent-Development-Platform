@@ -1,0 +1,36 @@
+*.pyc
+*~
+__pycache__/
+db.sqlite3
+/db.sqlite3-journal
+.DS_Store
+*.swp
+*.*~
+sessionid
+
+# PyCharm specific
+.idea/
+*.iml
+
+# virtual environment
+venv/
+*.venv
+ENV/
+
+# Spurious files
+*.log
+
+# Media files
+media/
+
+# Static files
+static/
+
+files
+storage
+image_files
+logs
+
+# VSCode specific
+.vscode/
+.idea
