@@ -5,7 +5,7 @@ from openai import OpenAI
 from flask import jsonify
 from internal.schema.app_schema import CompletionReq
 from pkg.response import success_json, validate_error_json
-
+from internal.exception import FailException
 
 class AppHandler:
     """应用控制器"""
@@ -33,5 +33,6 @@ class AppHandler:
         return success_json({"content": content})
 
     def ping(self):
-        return {"ping": "pong"}
+        raise FailException("数据未找到")
+        # return {"ping": "pong"}
 
