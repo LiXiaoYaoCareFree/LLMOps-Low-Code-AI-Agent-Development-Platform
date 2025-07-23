@@ -1,5 +1,5 @@
 import dotenv
-from flask_sqlalchemy import SQLAlchemy
+from pkg.sqlalchemy import SQLAlchemy
 from injector import Injector
 
 from app.http.module import ExtensionModule
