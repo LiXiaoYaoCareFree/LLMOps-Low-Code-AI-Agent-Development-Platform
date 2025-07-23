@@ -6,11 +6,12 @@ from internal.router import Router
 from config import Config
 from internal.exception import CustomException
 from pkg.response import json, Response, HttpCode
+from flask_sqlalchemy import SQLAlchemy
 
 
 class Http(Flask):
     """Http服务引擎"""
-    def __init__(self, *args,conf: Config, router: Router, **kwargs):
+    def __init__(self, *args,conf: Config, db: SQLAlchemy, router: Router, **kwargs):
         # 1.调用父类构造函数初始化
         super().__init__(*args, **kwargs)
 
@@ -20,7 +21,10 @@ class Http(Flask):
         # 3.注册绑定异常错误处理
         self.register_error_handler(Exception, self._register_error_handler)
 
-        # 4.注册应用路由
+        # 4.注册数据库
+        db.init_app(self)
+
+        # 5.注册应用路由
         router.register_router(self)
 
     def _register_error_handler(self, error: Exception):
