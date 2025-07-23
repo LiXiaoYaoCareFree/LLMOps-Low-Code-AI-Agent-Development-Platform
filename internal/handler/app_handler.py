@@ -2,7 +2,6 @@ import os
 
 from flask import request
 from openai import OpenAI
-from flask import jsonify
 from internal.schema.app_schema import CompletionReq
 from pkg.response import success_json, validate_error_json
 from internal.exception import FailException
