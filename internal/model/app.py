@@ -28,6 +28,7 @@ class App(db.Model):
     icon = Column(String(255), default="", nullable=False)
     config = Column(JSONB, default={}, nullable=False)
     description = Column(Text, default="", nullable=False)
+    status = Column(String(255), default="", nullable=False)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     created_at = Column(DateTime, default=datetime.now, nullable=False)
 

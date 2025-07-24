@@ -1,6 +1,7 @@
 import dotenv
 from pkg.sqlalchemy import SQLAlchemy
 from injector import Injector
+from flask_migrate import Migrate
 
 from app.http.module import ExtensionModule
 from internal.server.http import Http
@@ -14,7 +15,12 @@ conf = Config()
 
 injector = Injector([ExtensionModule])
 
-app = Http(__name__,conf=conf, db=injector.get(SQLAlchemy), router=injector.get(Router))
+app = Http(__name__,
+           conf=conf,
+           db=injector.get(SQLAlchemy),
+           migrate=injector.get(Migrate),
+           router=injector.get(Router)
+)
 
 
 if __name__ == "__main__":
