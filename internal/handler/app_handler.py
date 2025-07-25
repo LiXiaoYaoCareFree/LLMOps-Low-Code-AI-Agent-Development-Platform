@@ -48,18 +48,16 @@ class AppHandler:
         if not req.validate():
             return validate_error_json(req.errors)
 
+        # 2.构建组件
         prompt = ChatPromptTemplate.from_template("{query}")
-
-        # 2.构建Openai客户端，并发起请求
         llm = ChatOpenAI(model="kimi-k2-0711-preview", temperature=0.7)
-
-        # 3.得到请求响应，然后将OpenAI的响应传递给前端
-        ai_message = llm.invoke(prompt.invoke({"query": req.query}))
-
         parser = StrOutputParser()
 
-        # 4.解析响应内容
-        content = parser.invoke(ai_message)
+        # 3.构建链
+        chain = prompt | llm | parser
+
+        # 4.执行链并获取结果
+        content = chain.invoke({"query": req.query.data})
 
         return success_json({"content": content})
 
