@@ -16,6 +16,9 @@ class Config:
     def __init__(self):
         # 关闭wtf的csrf保护
         self.WTF_CSRF_ENABLED = _get_env("WTF_CSRF_ENABLED")
+        
+        # 添加SECRET_KEY配置
+        self.SECRET_KEY = _get_env("SECRET_KEY")
 
         # 配置数据库
         self.SQLALCHEMY_DATABASE_URI = _get_env("SQLALCHEMY_DATABASE_URI")

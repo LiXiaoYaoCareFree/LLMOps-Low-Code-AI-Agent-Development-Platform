@@ -2,6 +2,7 @@
 DEFAULT_CONFIG = {
     # wtf配置
     "WTF_CSRF_ENABLED": "False",
+    "SECRET_KEY": "dev-secret-key",  
 
     # SQLAlchemy数据库配置
     "SQLALCHEMY_DATABASE_URI": "",
