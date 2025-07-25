@@ -6,7 +6,3 @@
 [English](README_EN.md) | [中文](README.md)
 </div>
 
-# LLMOps项目系统设计
-![](https://cdniy.com/xiaoyao/i/2025/07/22/lpux.png)
-![](https://cdniy.com/xiaoyao/i/2025/07/22/dsw.png)
-![](https://cdniy.com/xiaoyao/i/2025/07/22/n3ci.png)

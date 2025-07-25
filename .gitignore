@@ -34,4 +34,3 @@ logs
 # VSCode specific
 .vscode/
 .idea
-langchain

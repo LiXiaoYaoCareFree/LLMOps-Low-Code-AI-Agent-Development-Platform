@@ -1,3 +1,4 @@
+# 通用公共异常目录
 from .exception import (
     CustomException,
     FailException,
