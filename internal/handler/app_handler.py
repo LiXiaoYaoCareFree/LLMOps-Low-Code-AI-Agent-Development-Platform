@@ -3,6 +3,7 @@ import uuid
 from injector import inject
 from dataclasses import dataclass
 import os
+import dotenv
 
 from flask import request
 from openai import OpenAI
@@ -10,6 +11,11 @@ from internal.schema.app_schema import CompletionReq
 from pkg.response import success_json, validate_error_json, success_message
 from internal.exception import FailException
 from internal.service import AppService
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
+
+dotenv.load_dotenv()
 
 @inject
 @dataclass
@@ -41,20 +47,19 @@ class AppHandler:
         req = CompletionReq()
         if not req.validate():
             return validate_error_json(req.errors)
-        query = request.json.get("query")
+
+        prompt = ChatPromptTemplate.from_template("{query}")
 
         # 2.构建Openai客户端，并发起请求
-        client = OpenAI(base_url=os.getenv("OPENAI_API_BASE"))
+        llm = ChatOpenAI(model="kimi-k2-0711-preview", temperature=0.7)
 
         # 3.得到请求响应，然后将OpenAI的响应传递给前端
-        completion = client.chat.completions.create(
-            model="kimi-k2-0711-preview",
-            messages=[{"role": "system", "content": "你是一个AI助手，根据用户的输入回答相应的问题"},
-                      {"role":"user", "content": query},
-            ]
-        )
+        ai_message = llm.invoke(prompt.invoke({"query": req.query}))
 
-        content = completion.choices[0].message.content
+        parser = StrOutputParser()
+
+        # 4.解析响应内容
+        content = parser.invoke(ai_message)
 
         return success_json({"content": content})
 
