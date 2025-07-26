@@ -1,5 +1,5 @@
 import uuid
-
+from uuid import UUID
 from injector import inject
 from dataclasses import dataclass
 import os
@@ -41,7 +41,7 @@ class AppHandler:
         app = self.app_service.delete_app(id)
         return success_message(f"应用已经成功删除，应用名称为{app.name}")
 
-    def completion(self):
+    def debug(self, app_id: UUID):
         """聊天接口"""
         # 1.提取从接口中获取的输入，GET?POST?
         req = CompletionReq()
