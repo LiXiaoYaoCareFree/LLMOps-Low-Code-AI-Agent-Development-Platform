@@ -19,10 +19,18 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  
+
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
   skipFormatting,
+
+  // ✅ 新增这一项来禁用 any 限制
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  }
 )

@@ -27,11 +27,11 @@ media/
 static/
 
 files
-llmops-api/storage
+api/storage
 image_files
 logs
 
 # VSCode specific
 .vscode/
 .idea
-llmops-api/.env
+api/.env
