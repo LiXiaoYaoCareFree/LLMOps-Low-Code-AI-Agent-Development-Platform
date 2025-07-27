@@ -12,7 +12,19 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  // server: {
+  //   //  /api/apps/app_id/debug -> http://localhost:5000/api/apps/app_id/debug
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:5000',
+  //       changeOrigin: true,
+  //       rewrite(path: string) {
+  //         return path.replace(/^\/api/, '')
+  //       },
+  //     },
+  //   },
+  // },
 })

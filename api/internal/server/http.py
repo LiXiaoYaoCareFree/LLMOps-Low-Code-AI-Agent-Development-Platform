@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-
+from flask_cors import CORS
 
 from api.internal.router import Router
 from api.config import Config
@@ -34,7 +34,17 @@ class Http(Flask):
         db.init_app(self)
         migrate.init_app(self, db, directory="internal/migration")
 
-        # 5.注册应用路由
+        # 5.解决跨域问题
+        CORS(self, resources={
+            r"/*": {
+                "origins": "*",  # 允许所有来源
+                "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # 允许的HTTP方法
+                "allow_headers": ["Content-Type", "Authorization"],  # 允许的请求头
+                "supports_credentials": True,  # 是否支持凭据
+            }
+        })
+
+        # 6.注册应用路由
         router.register_router(self)
 
     def _register_error_handler(self, error: Exception):

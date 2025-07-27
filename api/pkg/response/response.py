@@ -12,7 +12,13 @@ class Response:
 
 def json(data: Response = None):
     """基础的响应接口"""
-    return jsonify(data), 200
+    response = jsonify(data)
+    # 添加跨域请求头
+    # response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+    # response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    # response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    # response.headers['Access-Control-Allow-Credentials'] = 'true'
+    return response, 200
 
 def success_json(data: Any = None):
     """成功数据响应"""
