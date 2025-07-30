@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { isLogin } from '@/utils/auth'
 import DefaultLayout from '@/views/layouts/DefaultLayout.vue'
 import BlankLayout from '@/views/layouts/BlankLayout.vue'
@@ -24,11 +24,6 @@ const router = createRouter({
           name: 'space-apps-list',
           component: () => import('@/views/space/apps/ListView.vue'),
         },
-        {
-          path: 'space/apps/:app_id',
-          name: 'space-apps-detail',
-          component: () => import('@/views/space/apps/DetailView.vue'),
-        },
       ],
     },
     {
@@ -36,21 +31,24 @@ const router = createRouter({
       component: BlankLayout,
       children: [
         {
-          path: '/auth/login',
+          path: 'auth/login',
           name: 'auth-login',
           component: () => import('@/views/auth/LoginView.vue'),
+        },
+        {
+          path: 'space/apps/:app_id',
+          name: 'space-apps-detail',
+          component: () => import('@/views/space/apps/DetailView.vue'),
         },
       ],
     },
   ],
 })
 
-router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+// todo:路由守卫逻辑还未实现
+router.beforeEach(async (to, from) => {
   if (!isLogin() && to.name != 'auth-login') {
     return { path: '/auth/login' }
   }
-  console.log('to:', to)
-  console.log('from:', from)
 })
-
 export default router
