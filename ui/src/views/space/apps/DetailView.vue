@@ -83,7 +83,7 @@ const send = async () => {
               class="flex-shrink-0"
               :size="30"
             >
-              慕
+              逍
             </a-avatar>
             <a-avatar
               v-else
