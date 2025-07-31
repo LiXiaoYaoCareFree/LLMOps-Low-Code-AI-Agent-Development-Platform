@@ -85,7 +85,7 @@ AI：因为人工智能会帮助人类充分发挥潜力。
 
 请帮用户将上面的信息生成新摘要。"""
         completion = self._client.chat.completions.create(
-            model="gpt-4-turbo",
+            model="kimi-k2-0711-preview",
             messages=[{"role": "user", "content": prompt}]
         )
         return completion.choices[0].message.content
@@ -112,7 +112,7 @@ while True:
         f"用户的提问是: {query}"
     )
     response = client.chat.completions.create(
-        model='gpt-4-turbo',
+        model='kimi-k2-0711-preview',
         messages=[
             {"role": "user", "content": answer_prompt},
         ],
