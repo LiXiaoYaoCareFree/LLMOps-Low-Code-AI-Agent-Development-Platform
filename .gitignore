@@ -27,7 +27,6 @@ media/
 static/
 
 files
-api/storage
 image_files
 logs
 
