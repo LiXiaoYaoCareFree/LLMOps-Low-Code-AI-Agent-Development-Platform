@@ -34,3 +34,4 @@ logs
 .vscode/
 .idea
 api/.env
+*.safetensors
