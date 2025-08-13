@@ -5,7 +5,7 @@ dotenv.load_dotenv()
 
 embeddings = QianfanEmbeddingsEndpoint()
 
-query_vector = embeddings.embed_query("我叫慕小课，我喜欢打篮球游泳")
+query_vector = embeddings.embed_query("我叫lly，我喜欢打篮球游泳")
 
 print(query_vector)
 print(len(query_vector))

@@ -4,6 +4,7 @@ from langchain_pinecone import PineconeVectorStore
 
 dotenv.load_dotenv()
 
+
 embedding = OpenAIEmbeddings(model="text-embedding-3-small")
 
 texts: list = [

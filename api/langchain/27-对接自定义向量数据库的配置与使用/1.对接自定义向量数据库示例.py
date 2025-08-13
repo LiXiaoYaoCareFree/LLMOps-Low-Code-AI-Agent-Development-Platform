@@ -6,6 +6,7 @@ import numpy as np
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 from langchain_core.vectorstores import VectorStore
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_openai import OpenAIEmbeddings
 
 
@@ -101,7 +102,7 @@ metadatas = [
     {"page": 9},
     {"page": 10},
 ]
-embedding = OpenAIEmbeddings(model="text-embedding-3-small")
+embedding = HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L12-v2")
 
 # 2.构建自定义向量数据库
 db = MemoryVectorStore(embedding=embedding)

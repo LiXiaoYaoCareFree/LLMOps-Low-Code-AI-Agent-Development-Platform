@@ -5,7 +5,7 @@ embeddings = HuggingFaceEmbeddings(
     cache_folder="./embeddings/"
 )
 
-query_vector = embeddings.embed_query("你好，我是慕小课，我喜欢打篮球游泳")
+query_vector = embeddings.embed_query("你好，我是lly，我喜欢打篮球游泳")
 
 print(query_vector)
 print(len(query_vector))

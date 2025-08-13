@@ -23,7 +23,7 @@ def cosine_similarity(vec1: list, vec2: list) -> float:
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # 2.嵌入文本
-query_vector = embeddings.embed_query("我叫慕小课，我喜欢打篮球")
+query_vector = embeddings.embed_query("我叫lly，我喜欢打篮球")
 
 print(query_vector)
 print(len(query_vector))

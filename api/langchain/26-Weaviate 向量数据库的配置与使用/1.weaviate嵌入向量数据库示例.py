@@ -1,7 +1,9 @@
 import dotenv
 import weaviate
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_weaviate import WeaviateVectorStore
+from weaviate.auth import AuthApiKey
 from weaviate.classes.query import Filter
 
 dotenv.load_dotenv()
@@ -33,12 +35,12 @@ metadatas = [
 ]
 
 # 2.创建连接客户端
-client = weaviate.connect_to_local("192.168.2.120", "8080")
+client = weaviate.connect_to_local("localhost", 8080)
 # client = weaviate.connect_to_wcs(
-#     cluster_url="https://eftofnujtxqcsa0sn272jw.c0.us-west3.gcp.weaviate.cloud",
-#     auth_credentials=AuthApiKey("21pzYy0orl2dxH9xCoZG1O2b0euDeKJNEbB0"),
+#     cluster_url="https://jzozxfqiqxwvuqnfyqigw.c0.us-west3.gcp.weaviate.cloud",
+#     auth_credentials=AuthApiKey("dWpaYVl3NktpZ1RYdCtyMV92a1ZxVm1tNjVHaFNXM0t2eUs4QS9TYndFR1lyUnJoYlltcHJRRUNQaU44PV92MjAw"),
 # )
-embedding = OpenAIEmbeddings(model="text-embedding-3-small")
+embedding =  HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L12-v2")
 
 # 3.创建LangChain向量数据库实例
 db = WeaviateVectorStore(
