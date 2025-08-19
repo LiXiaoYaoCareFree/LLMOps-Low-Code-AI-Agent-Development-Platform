@@ -59,3 +59,6 @@ filters = Filter.by_property("page").greater_or_equal(5)
 print(db.similarity_search_with_score("笨笨", filters=filters))
 retriever = db.as_retriever()
 print(retriever.invoke("笨笨"))
+
+
+client.close()
